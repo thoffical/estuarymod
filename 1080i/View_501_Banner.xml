@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+	<include name="BannerInfoFlag">
+		<control type="group">
+			<top>$PARAM[posy]</top>
+			<control type="image">
+				<top>0</top>
+				<right>41</right>
+				<width>70</width>
+				<height>32</height>
+				<fadetime>300</fadetime>
+				<aspectratio align="center">keep</aspectratio>
+				<texture>$PARAM[icon]</texture>
+			</control>
+			<control type="label">
+				<right>41</right>
+				<top>35</top>
+				<width>70</width>
+				<height>32</height>
+				<align>center</align>
+				<font>font12</font>
+				<selectedcolor>white</selectedcolor>
+				<label fallback="">$INFO[$PARAM[infolabel]]</label>
+			</control>
+		</control>
+	</include>
+	<include name="View_501_Banner">
+		<control type="group">
+			<include>OpenClose_Right</include>
+			<left>80</left>
+			<top>0</top>
+			<visible>Control.IsVisible(501)</visible>
+			<include>Visible_Right</include>
+			<control type="panel" id="501">
+				<left>0</left>
+				<top>0</top>
+				<width>1800</width>
+				<height>1080</height>
+				<onleft>9000</onleft>
+				<onright>531</onright>
+				<onup>501</onup>
+				<ondown>501</ondown>
+				<viewtype label="20020">wide</viewtype>
+				<preloaditems>2</preloaditems>
+				<pagecontrol>531</pagecontrol>
+				<scrolltime tween="cubic" easing="out">500</scrolltime>
+				<visible>Container.Content(tvshows)</visible>
+				<itemlayout height="220" width="900">
+					<control type="group">
+						<posy>100</posy>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>860</width>
+							<height>195</height>
+							<texture border="2" fallback="dialogs/dialog-bg-nobo.png" background="true">$VAR[BannerArtVar]</texture>
+							<aspectratio aligny="center">scale</aspectratio>
+							<bordertexture border="20">overlays/shadow.png</bordertexture>
+							<bordersize>20</bordersize>
+						</control>
+						<control type="label">
+							<left>70</left>
+							<top>20</top>
+							<width>700</width>
+							<height>145</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>font52_title</font>
+							<shadowcolor>text_shadow</shadowcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<visible>String.IsEmpty(ListItem.Art(banner)) + !Listitem.IsParentFolder</visible>
+						</control>
+						<control type="group">
+							<left>405</left>
+							<top>-8</top>
+							<include>UserRatingCircle</include>
+						</control>
+					</control>
+				</itemlayout>
+				<focusedlayout height="220" width="900">
+					<control type="group">
+						<animation effect="slide" start="0,0" end="-37,0" time="300">Focus</animation>
+						<animation effect="slide" start="-37,0" end="0,0" time="125">UnFocus</animation>
+						<posy>100</posy>
+						<control type="image">
+							<left>0</left>
+							<top>0</top>
+							<width>860</width>
+							<height>195</height>
+							<texture border="2" fallback="dialogs/dialog-bg-nobo.png" background="true">$VAR[BannerArtVar]</texture>
+							<aspectratio aligny="center">scale</aspectratio>
+							<bordertexture border="20">overlays/shadow.png</bordertexture>
+							<bordersize>20</bordersize>
+						</control>
+						<control type="label">
+							<left>70</left>
+							<top>20</top>
+							<width>700</width>
+							<height>145</height>
+							<label>$INFO[ListItem.Label]</label>
+							<font>font52_title</font>
+							<shadowcolor>text_shadow</shadowcolor>
+							<align>left</align>
+							<aligny>center</aligny>
+							<visible>String.IsEmpty(ListItem.Art(banner)) + !Listitem.IsParentFolder</visible>
+						</control>
+						<control type="image">
+							<left>18</left>
+							<top>18</top>
+							<width>824</width>
+							<height>160</height>
+							<texture border="8" colordiffuse="button_focus">buttons/thumbnail_focused.png</texture>
+						</control>
+						<control type="group">
+							<left>405</left>
+							<top>-8</top>
+							<include>UserRatingCircle</include>
+						</control>
+						<control type="group">
+							<animation type="Focus">
+								<effect type="fade" start="0" end="100" time="300" />
+							</animation>
+							<animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
+							<control type="image">
+								<left>22</left>
+								<top>134</top>
+								<width>816</width>
+								<height>40</height>
+								<texture>colors/black.png</texture>
+								<animation effect="fade" start="0" end="70" time="50">Focus</animation>
+								<visible>!Listitem.IsParentFolder</visible>
+							</control>
+							<control type="image">
+								<left>35</left>
+								<top>138</top>
+								<width>32</width>
+								<height>32</height>
+								<texture>$VAR[ListWatchedIconVar]</texture>
+							</control>
+							<control type="label">
+								<left>80</left>
+								<top>142</top>
+								<width>800</width>
+								<height>20</height>
+								<font>font12</font>
+								<aligny>center</aligny>
+								<label>$INFO[ListItem.Label]</label>
+								<visible>!Listitem.IsParentFolder</visible>
+							</control>
+							<control type="image">
+								<right>73</right>
+								<top>143</top>
+								<width>22</width>
+								<height>22</height>
+								<texture>lists/played-total.png</texture>
+								<visible>String.IsEqual(Listitem.dbtype,tvshow) + !String.IsEmpty(ListItem.Property(TotalEpisodes))</visible>
+							</control>
+							<control type="label">
+								<right>103</right>
+								<top>142</top>
+								<width>800</width>
+								<height>20</height>
+								<font>font12</font>
+								<textcolor>button_focus</textcolor>
+								<align>right</align>
+								<aligny>center</aligny>
+								<label>$VAR[BannerLabel2Var]</label>
+							</control>
+						</control>
+					</control>
+					<control type="image">
+						<right>19</right>
+						<top>118</top>
+						<width>70</width>
+						<height>160</height>
+						<texture colordiffuse="button_focus">colors/white.png</texture>
+						<animation effect="zoom" start="0,100" end="100,100" time="250" center="auto">Focus</animation>
+						<animation effect="zoom" start="100,100" end="0,100" time="125" center="auto" delay="50">UnFocus</animation>
+					</control>
+					<control type="group">
+						<animation effect="fade" start="0" end="100" time="200" delay="250">Focus</animation>
+						<animation effect="fade" start="100" end="0" time="50">UnFocus</animation>
+						<top>120</top>
+						<right>-22</right>
+						<include content="BannerInfoFlag">
+							<param name="icon" value="lists/rating.png" />
+							<param name="infolabel" value="ListItem.Rating" />
+							<param name="posy" value="5" />
+						</include>
+						<include content="BannerInfoFlag">
+							<param name="icon" value="lists/year.png" />
+							<param name="infolabel" value="ListItem.Year" />
+							<param name="posy" value="84" />
+						</include>
+					</control>
+				</focusedlayout>
+			</control>
+		</control>
+	</include>
+</includes>
